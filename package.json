@@ -1,7 +1,7 @@
 {
-	"name": "@alessiofrittoli/node-module-starter",
-	"version": "1.4.0",
-	"description": "Starter repository for developing node_modules",
+	"name": "@alessiofrittoli/console",
+	"version": "0.1.0",
+	"description": "Console stdout utility library",
 	"author": {
 		"name": "Alessio Frittoli",
 		"email": "info@alessiofrittoli.it",
@@ -9,18 +9,17 @@
 	},
 	"license": "MIT",
 	"keywords": [
-		"nodejs",
-		"npm",
-		"node_modules"
+		"console",
+		"stdout"
 	],
-	"homepage": "https://github.com/alessiofrittoli/node-module-starter#readme",
+	"homepage": "https://github.com/alessiofrittoli/console#readme",
 	"bugs": {
-		"url": "https://github.com/alessiofrittoli/node-module-starter/issues",
+		"url": "https://github.com/alessiofrittoli/console/issues",
 		"email": "info@alessiofrittoli.it"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/alessiofrittoli/node-module-starter.git"
+		"url": "git+https://github.com/alessiofrittoli/console.git"
 	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
@@ -28,13 +27,25 @@
 	"files": [
 		"dist"
 	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js"
+		},
+		"./ansi": {
+			"types": "./dist/ansi/index.d.ts",
+			"import": "./dist/ansi/index.mjs",
+			"require": "./dist/ansi/index.js"
+		}
+	},
 	"sideEffects": false,
 	"scripts": {
-		"build": "pnpm lint && pnpm test:ci && pnpm test:ci:jsdom && tsup",
+		"build": "pnpm lint && pnpm test:ci && tsup",
 		"build:watch": "tsup --watch",
 		"lint": "eslint",
 		"release": "node scripts/publish.js --verbose",
-		"test": "jest",
+		"test": "jest --verbose",
 		"test:watch": "jest --watchAll --verbose",
 		"test:jsdom": "JSDOM=true pnpm test:watch",
 		"test:ci": "jest --ci --verbose",
@@ -50,21 +61,25 @@
 	},
 	"devDependencies": {
 		"@alessiofrittoli/node-scripts": "^2.2.1",
-		"@eslint/js": "^9.18.0",
+		"@eslint/js": "^9.20.0",
 		"@jest/globals": "^29.7.0",
 		"@types/jest": "^29.5.14",
-		"@types/node": "^22.10.7",
+		"@types/node": "^22.13.1",
 		"concurrently": "^9.1.2",
 		"dotenv": "^16.4.7",
-		"eslint": "^9.18.0",
+		"eslint": "^9.20.0",
 		"globals": "^15.14.0",
 		"http-server": "^14.1.1",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
 		"ts-jest": "^29.2.5",
 		"ts-node": "^10.9.2",
-		"tsup": "^8.3.5",
+		"tsup": "^8.3.6",
 		"typescript": "^5.7.3",
-		"typescript-eslint": "^8.20.0"
+		"typescript-eslint": "^8.24.0"
+	},
+	"dependencies": {
+		"@alessiofrittoli/math-utils": "^1.7.0",
+		"@alessiofrittoli/web-utils": "^0.7.0"
 	}
 }
