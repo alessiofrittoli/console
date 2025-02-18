@@ -3,6 +3,9 @@
  */
 import { Console } from '@/index'
 
+/** Declare an empty `util` object since `util` methods are not available in client environments. */
+jest.mock( 'util', () => ( { util: {} } ) )
+
 describe( 'Console', () => {
 
 	let logSpy: jest.SpyInstance

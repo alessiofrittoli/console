@@ -131,8 +131,8 @@ export class Console
 		this.reset()
 		
 		if (
-			typeof window === 'undefined' &&
 			formatOptions &&
+			'formatWithOptions' in util &&
 			Object.keys( formatOptions ).length > 0
 		) {
 			return print( util.formatWithOptions( formatOptions, ...parsed ) )
