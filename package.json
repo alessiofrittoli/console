@@ -1,6 +1,6 @@
 {
 	"name": "@alessiofrittoli/console",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Console stdout utility library",
 	"author": {
 		"name": "Alessio Frittoli",
