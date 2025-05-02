@@ -22,6 +22,7 @@
 ### Table of Contents
 
 - [Getting started](#getting-started)
+- [API Reference](#api-reference)
 - [Development](#development)
   - [Install depenendencies](#install-depenendencies)
   - [Build the source code](#build-the-source-code)
@@ -46,6 +47,14 @@ or using `pnpm`
 ```bash
 pnpm i @alessiofrittoli/console
 ```
+
+---
+
+### API Reference
+
+⚠️ Docs coming soon
+
+If you want to contribute by writing `Console` documentation, please feel free to open a Pull Request on [GitHub](https://github.com/alessiofrittoli/console).
 
 ---
 
