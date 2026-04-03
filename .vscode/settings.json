@@ -1,4 +1,5 @@
 {
+	"js/ts.tsdk.path": "node_modules/typescript/lib",
 	"workbench.colorCustomizations": {
 		"titleBar.activeBackground": "#212121",
 		"titleBar.border": "#CB3837",
