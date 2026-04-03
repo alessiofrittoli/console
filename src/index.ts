@@ -1,6 +1,6 @@
 import util, { type InspectOptions } from 'util'
-import { hexToAnsiTrueColor } from '@alessiofrittoli/math-utils/conversion'
-import { toKebabCase } from '@alessiofrittoli/web-utils/strings'
+import { hexToAnsiTrueColor } from '@alessiofrittoli/math-utils'
+import { toKebabCase } from '@alessiofrittoli/web-utils'
 import { ansi } from './ansi'
 
 /** Common console arguments */
