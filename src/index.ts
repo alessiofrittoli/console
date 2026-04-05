@@ -3,6 +3,7 @@ import { hexToAnsiTrueColor } from '@alessiofrittoli/math-utils'
 import { toKebabCase } from '@alessiofrittoli/web-utils'
 import { ansi } from './ansi'
 
+
 /** Common console arguments */
 type ConsoleArguments = [ message?: unknown, ...params: unknown[] ]
 
@@ -103,6 +104,31 @@ export class Console
 
 
 	/**
+	 * Parse current statements into a printable array and reset internal state.
+	 * 
+	 * @param args Message and additional parameters.
+	 * @returns The formatted array ready for stdout.
+	 */
+	static parsed( ...args: ConsoleArguments )
+	{
+		if ( args.length > 0 ) {
+			this.prepare( undefined, ...args )
+		}
+
+		if ( this.cssStatements && this.cssStatements.length > 0 ) {
+			this.statements.unshift( '%c' )
+			this.statements.push( this.cssStatements.join( '; ' ) )
+		}
+
+		const parsed = this.mergeAnsi( this.statements )
+
+		this.reset()
+
+		return parsed
+	}
+
+
+	/**
 	 * Handles styled stdout.
 	 * 
 	 * @param	method	The console method to use.
@@ -114,31 +140,21 @@ export class Console
 		...args	: ConsoleArguments
 	)
 	{
-		const print = console[ method ]
-
-		if ( args.length > 0 ) {
-			this.prepare( undefined, ...args )
-		}
-
-		if ( this.cssStatements && this.cssStatements.length > 0 ) {
-			this.statements.unshift( '%c' )
-			this.statements.push( this.cssStatements.join( '; ' ) )
-		}
-
-		const parsed		= this.mergeAnsi( this.statements )
+		const print			= console[ method ]
 		const formatOptions	= this.formatOptions
-		
-		this.reset()
+		const parsed		= this.parsed( ...args )
 		
 		if (
 			formatOptions &&
 			'formatWithOptions' in util &&
 			Object.keys( formatOptions ).length > 0
 		) {
-			return print( util.formatWithOptions( formatOptions, ...parsed ) )
+			print( util.formatWithOptions( formatOptions, ...parsed ) )
+			return this
 		}
-
-		return print( ...parsed )
+		
+		print( ...parsed )
+		return this
 	}
 
 
@@ -416,6 +432,74 @@ export class Console
 		return this
 	}
 
+
+	/**
+	 * Writes formatted output directly to `process.stdout` without appending a newline.
+	 * Falls back to {@link Console.log()} when `process.stdout` is not available.
+	 *
+	 * ```ts
+	 * Console.stdout( 'Simple example\n' )
+	 * 
+	 * Console
+	 *  .decoration.bright()
+	 *  .bg.green( ' PASS ' )
+	 *  .apply()
+	 *  .fg.black( ' __tests__/' )
+	 *  .apply()
+	 *  .decoration.bright( 'file.test.ts' )
+	 *  .stdout( '\n' )
+	 * ```
+	 *
+	 * @param args Message and additional parameters to format and write.
+	 * @returns The current Console reference for chaining purposes.
+	 */
+	static stdout( ...args: ConsoleArguments )
+	{
+		if (
+			typeof process === 'undefined' ||
+			typeof process.stdout === 'undefined'
+		) return Console.log( ...args )
+
+		process.stdout.write(
+			Console.parsed( ...args ).join( '' )
+		)
+
+		return this
+	}
+	
+	
+	/**
+	 * Writes formatted output directly to `process.stderr` without appending a newline.
+	 * Falls back to {@link Console.log()} when `process.stderr` is not available.
+	 *
+	 * ```ts
+	 * Console.stderr( 'Simple example\n' )
+	 * 
+	 * Console
+	 *  .decoration.bright()
+	 *  .raw( '● ' )
+	 *  .bg.red()
+	 *  .fg.white( ' ERROR ' )
+	 *  .apply()
+	 *  .stderr( '\n' )
+	 * ```
+	 *
+	 * @param args Message and additional parameters to format and write.
+	 * @returns The current Console reference for chaining purposes.
+	 */
+	static stderr( ...args: ConsoleArguments )
+	{
+		if (
+			typeof process === 'undefined' ||
+			typeof process.stderr === 'undefined'
+		) return Console.log( ...args )
+
+		process.stderr.write(
+			Console.parsed( ...args ).join( '' )
+		)
+
+		return this
+	}
 
 	/**
 	 * Prints to `stdout` with newline. Multiple arguments can be passed, with the
