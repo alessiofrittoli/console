@@ -125,6 +125,169 @@ describe( 'Console', () => {
 	} )
 
 
+	describe( 'Console.stdout()', () => {
+
+		let stdoutSpy: jest.SpyInstance
+
+		beforeEach( () => {
+			stdoutSpy = jest.spyOn( process.stdout, 'write' )
+			stdoutSpy.mockImplementation( () => true )
+		} )
+
+
+		it( 'writes directly to process stdout without a trailing newline', () => {
+
+			expect( Console.stdout( 'Some stdout data' ) )
+				.toBe( Console )
+
+			expect( stdoutSpy )
+				.toHaveBeenCalledWith( 'Some stdout data' )
+
+			expect( logSpy )
+				.not.toHaveBeenCalled()
+
+		} )
+
+
+		it( 'falls back to Console.log when process stdout is unavailable', () => {
+
+			const consoleLogSpy = jest.spyOn( Console, 'log' )
+			const originalProcess = globalThis.process
+
+			Object.defineProperty( globalThis, 'process', {
+				value: undefined,
+				configurable: true,
+			} )
+
+			try {
+
+				expect( Console.stdout( 'Fallback output' ) )
+					.toBe( Console )
+
+				expect( consoleLogSpy )
+					.toHaveBeenCalledWith( 'Fallback output' )
+
+			} finally {
+
+				Object.defineProperty( globalThis, 'process', {
+					value: originalProcess,
+					configurable: true,
+				} )
+				
+			}
+
+		} )
+
+
+		it( 'outputs styled data', () => {
+
+			Console
+				.decoration.bright()
+				.bg.green( ' PASS ' )
+				.apply()
+				.fg.black( ' __tests__/' )
+				.apply()
+				.decoration.bright( 'file.test.ts' )
+				.stdout( '\n' )
+
+			expect( stdoutSpy )
+				.toHaveBeenCalledWith( [
+					ansi.decoration.bright,
+					ansi.background.green,
+					' PASS ',
+					ansi.decoration.reset,
+					ansi.foreground.black,
+					' __tests__/',
+					ansi.decoration.reset,
+					ansi.decoration.bright,
+					'file.test.ts\n',
+				].join( '' ) )
+
+		} )
+
+	} )
+
+
+	describe( 'Console.stderr()', () => {
+
+		let stderrSpy: jest.SpyInstance
+
+		beforeEach( () => {
+			stderrSpy = jest.spyOn( process.stderr, 'write' )
+			stderrSpy.mockImplementation( () => true )
+		} )
+
+
+		it( 'writes directly to process stderr without a trailing newline', () => {
+
+			expect( Console.stderr( 'Some stderr data' ) )
+				.toBe( Console )
+
+			expect( stderrSpy )
+				.toHaveBeenCalledWith( 'Some stderr data' )
+
+			expect( logSpy )
+				.not.toHaveBeenCalled()
+
+		} )
+
+
+		it( 'falls back to Console.log when process stderr is unavailable', () => {
+
+			const consoleLogSpy = jest.spyOn( Console, 'log' )
+			const originalProcess = globalThis.process
+
+			Object.defineProperty( globalThis, 'process', {
+				value: undefined,
+				configurable: true,
+			} )
+
+			try {
+
+				expect( Console.stderr( 'Fallback output' ) )
+					.toBe( Console )
+
+				expect( consoleLogSpy )
+					.toHaveBeenCalledWith( 'Fallback output' )
+
+			} finally {
+
+				Object.defineProperty( globalThis, 'process', {
+					value: originalProcess,
+					configurable: true,
+				} )
+				
+			}
+
+		} )
+
+
+		it( 'outputs styled data', () => {
+
+			Console
+				.decoration.bright()
+				.raw( '● ' )
+				.bg.red()
+				.fg.white( ' ERROR ' )
+				.apply()
+				.stderr( '\n' )
+
+			expect( stderrSpy )
+				.toHaveBeenCalledWith( [
+					ansi.decoration.bright,
+					'● ',
+					ansi.background.red,
+					ansi.foreground.white,
+					' ERROR ',
+					ansi.decoration.reset,
+					'\n',
+				].join( '' ) )
+
+		} )
+
+	} )
+
+
 	describe( 'Console.info()', () => {
 
 		it( 'allows styled stdout', () => {
