@@ -1,22 +1,46 @@
-# Console 📟
+<h1 align="center">Console 📟</h1>
+<p align="center">
+  Console stdout utility library
+</p>
+<p align="center">
+  <a href="https://npmjs.org/package/@alessiofrittoli/console">
+    <img src="https://img.shields.io/npm/v/@alessiofrittoli/console" alt="Latest version"/>
+  </a>
+  <a href="https://coveralls.io/github/alessiofrittoli/console">
+    <img src="https://coveralls.io/repos/github/alessiofrittoli/console/badge.svg" alt="Test coverage"/>
+  </a>
+  <a href="https://socket.dev/npm/package/@alessiofrittoli/console/overview">
+    <img src="https://socket.dev/api/badge/npm/package/@alessiofrittoli/console" alt="Socket Security score"/>
+  </a>
+  <a href="https://npmjs.org/package/@alessiofrittoli/console">
+    <img src="https://img.shields.io/npm/dm/@alessiofrittoli/console.svg" alt="npm downloads"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/console">
+    <img src="https://badgen.net/bundlephobia/dependency-count/@alessiofrittoli/console" alt="Dependencies"/>
+  </a>
+  <a href="https://libraries.io/npm/%40alessiofrittoli%2Fconsole">
+    <img src="https://img.shields.io/librariesio/release/npm/@alessiofrittoli/console" alt="Dependencies status"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/console">
+    <img src="https://badgen.net/bundlephobia/min/@alessiofrittoli/console" alt="minified"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/console">
+    <img src="https://badgen.net/bundlephobia/minzip/@alessiofrittoli/console" alt="minizipped"/>
+  </a>
+  <a href="https://bundlephobia.com/package/@alessiofrittoli/console">
+    <img src="https://badgen.net/bundlephobia/tree-shaking/@alessiofrittoli/console" alt="Tree shakable"/>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/sponsors/alessiofrittoli">
+    <img src="https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2" alt="Fund this package"/>
+  </a>
+</p>
 
-[![NPM Latest Version][version-badge]][npm-url] [![Coverage Status][coverage-badge]][coverage-url] [![Socket Status][socket-badge]][socket-url] [![NPM Monthly Downloads][downloads-badge]][npm-url] [![Dependencies][deps-badge]][deps-url]
-
-[![GitHub Sponsor][sponsor-badge]][sponsor-url]
-
-[version-badge]: https://img.shields.io/npm/v/%40alessiofrittoli%2Fconsole
-[npm-url]: https://npmjs.org/package/%40alessiofrittoli%2Fconsole
-[coverage-badge]: https://coveralls.io/repos/github/alessiofrittoli/console/badge.svg
-[coverage-url]: https://coveralls.io/github/alessiofrittoli/console
-[socket-badge]: https://socket.dev/api/badge/npm/package/@alessiofrittoli/console
-[socket-url]: https://socket.dev/npm/package/@alessiofrittoli/console/overview
-[downloads-badge]: https://img.shields.io/npm/dm/%40alessiofrittoli%2Fconsole.svg
-[deps-badge]: https://img.shields.io/librariesio/release/npm/%40alessiofrittoli%2Fconsole
-[deps-url]: https://libraries.io/npm/%40alessiofrittoli%2Fconsole
 [sponsor-badge]: https://img.shields.io/static/v1?label=Fund%20this%20package&message=%E2%9D%A4&logo=GitHub&color=%23DB61A2
 [sponsor-url]: https://github.com/sponsors/alessiofrittoli
-
-## Console stdout utility library
 
 ### Table of Contents
 
