@@ -1,6 +1,6 @@
-import { foreground } from '@/ansi/foreground'
-import { decoration } from '@/ansi/decoration'
-import { background } from '@/ansi/background'
+import { foreground } from './foreground.ts'
+import { decoration } from './decoration.ts'
+import { background } from './background.ts'
 
 export const ansi = {
 	decoration,

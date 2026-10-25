@@ -1,7 +1,7 @@
 import { hexToAnsiTrueColor } from '@alessiofrittoli/math-utils'
 import { toKebabCase } from '@alessiofrittoli/web-utils'
 import util, { type InspectOptions } from 'util'
-import { ansi } from '@/ansi'
+import { ansi } from './ansi/index.ts'
 
 /**
  * Common console arguments
