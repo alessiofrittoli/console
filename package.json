@@ -84,24 +84,24 @@
 		"test:coverage:serve": "concurrently --prefix none --kill-others \"pnpm test:coverage\" \"pnpm test:serve-coverage\""
 	},
 	"peerDependencies": {
-		"@alessiofrittoli/math-utils": "^2.2.0",
-		"@alessiofrittoli/web-utils": "^3.0.0"
+		"@alessiofrittoli/math-utils": "^3.0.1",
+		"@alessiofrittoli/web-utils": "^3.0.2"
 	},
 	"devDependencies": {
-		"@alessiofrittoli/math-utils": "^2.2.0",
+		"@alessiofrittoli/math-utils": "^3.0.1",
 		"@alessiofrittoli/node-scripts": "^4.2.0",
-		"@alessiofrittoli/package-configs": "^1.9.0",
-		"@alessiofrittoli/web-utils": "^3.0.0",
+		"@alessiofrittoli/package-configs": "^1.14.1",
+		"@alessiofrittoli/web-utils": "^3.0.2",
 		"@types/node": "^24.19.1",
-		"@vitest/coverage-v8": "^5.0.5",
-		"concurrently": "^10.0.6",
+		"@vitest/coverage-v8": "^5.1.1",
+		"concurrently": "^10.0.7",
 		"http-server": "^14.1.1",
-		"oxlint": "^1.89.0",
-		"oxlint-tsgolint": "^7.0.2005",
-		"prettier": "^3.9.10",
+		"oxlint": "^1.94.0",
+		"oxlint-tsgolint": "^7.0.2007",
+		"prettier": "^3.10.1",
 		"prettier-plugin-sort-imports": "^1.8.11",
-		"tsdown": "^0.23.2",
+		"tsdown": "^0.23.7",
 		"typescript": "^6.0.3",
-		"vitest": "^5.0.5"
+		"vitest": "^5.1.1"
 	}
 }
